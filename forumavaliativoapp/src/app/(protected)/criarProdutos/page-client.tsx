@@ -2,12 +2,12 @@
 
 import { useState, ChangeEvent } from "react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/shared/components/ui/card";
 import { Input } from "@/shared/components/ui/input";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/shared/components/ui/badge";
 import { Field, FieldGroup, FieldLabel } from "@/shared/components/ui/field";
 import { Button } from "@/shared/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@/shared/components/ui/spinner";
 import { toast } from "sonner";
 import { User } from "../../../../prisma/generate/client";
 import CreateProducts from "@/shared/lib/createProducts";

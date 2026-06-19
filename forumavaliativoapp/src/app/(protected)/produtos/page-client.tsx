@@ -2,12 +2,12 @@
 
 import { Card, CardContent } from "@/shared/components/ui/card";
 import { Products, User } from "../../../../prisma/generate/client";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@/shared/components/ui/spinner";
 import { SquareArrowRightEnterIcon } from "lucide-react";
 import { authClient } from "@/shared/lib/auth-client";
 

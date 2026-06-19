@@ -13,7 +13,7 @@ import { useState } from "react";
 import { authClient } from "../lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { Spinner } from "@/components/ui/spinner";
+import { Spinner } from "@/shared/components/ui/spinner";
 
 export function CreateLoginForm({
   className,
