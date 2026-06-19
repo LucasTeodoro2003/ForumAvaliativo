@@ -82,7 +82,7 @@ export function LoginForm({
                 <Input id="password" type="password" name="password" required />
               </Field>
               <Field>
-                <Button type="submit">{!loading ? "Entrar" : <Spinner className="h-6"/>}</Button>
+                <Button type="submit" disabled={loading}>{!loading ? "Entrar" : <Spinner className="h-6"/>}</Button>
               </Field>
               <FieldDescription className="text-center">
                 Não tem conta? <Link href={"/cadastro"} prefetch replace>Cadastre-se</Link>

@@ -4,6 +4,8 @@ import { auth } from "@/shared/lib/auth";
 import { prisma } from "@/shared/lib/prisma";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import ProductsPageClient from "./page-client";
+import { User } from "../../../../prisma/generate/client";
 
 export default async function ProdutosPage() {
   const session = await auth.api.getSession({
@@ -14,17 +16,17 @@ export default async function ProdutosPage() {
     redirect("/login");
   }
 
-  const user = await prisma.user.findUnique({
+  const user = (await prisma.user.findUnique({
     where: {
-        id: session.user.id
-    }
-  })
+      id: session.user.id,
+    },
+  })) as User;
 
   const products = await prisma.products.findMany({
     where: {
-        userid: user?.id
-    }
-  })
+      userid: user?.id,
+    },
+  });
 
-  
+  return <ProductsPageClient products={products} user={user} />;
 }

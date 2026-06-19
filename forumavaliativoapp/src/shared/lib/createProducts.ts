@@ -16,6 +16,7 @@ export default async function CreateProducts(
         name: formProducts.get("nome")?.toString() || "",
         valor: formProducts.get("valor")?.toString() || "",
         userid: user.id,
+        image: formProducts.get("image")?.toString() || ""
       },
     });
     revalidatePath("/");

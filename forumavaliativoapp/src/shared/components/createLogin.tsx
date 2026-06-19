@@ -13,6 +13,7 @@ import { useState } from "react";
 import { authClient } from "../lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
 
 export function CreateLoginForm({
   className,
@@ -27,7 +28,7 @@ export function CreateLoginForm({
     const form = new FormData(event.currentTarget);
     const email = form.get("email")?.toString() || "";
     const password = form.get("password")?.toString() || "";
-    const name = form.get("name")?.toString() || ""
+    const name = form.get("name")?.toString() || "";
 
     const { data, error } = await authClient.signUp.email(
       {
@@ -37,24 +38,25 @@ export function CreateLoginForm({
       },
       {
         onRequest: (ctx) => {
-            setLoading(true)
+          setLoading(true);
         },
         onSuccess: (ctx) => {
-            toast.success("Criado com sucesso!")
-            router.replace("/")
-            setLoading(false)
+          toast.success("Criado com sucesso!");
+          router.replace("/");
+          setLoading(false);
         },
         onError: (ctx: any) => {
-            const error = ctx.error.message
-            let messageErro = ""
-            if (error.includes("User already exists")){
-              messageErro = "Email já cadastrado!"
-            }else if(error.includes("Password")){
-              messageErro = "Senha muito curta!"
-            }else{
-              messageErro = "Erro desconhecido"
-            }
-            toast.error("Erro ao criar conta!", {description: messageErro})
+          const error = ctx.error.message;
+          let messageErro = "";
+          if (error.includes("User already exists")) {
+            messageErro = "Email já cadastrado!";
+          } else if (error.includes("Password")) {
+            messageErro = "Senha muito curta!";
+          } else {
+            messageErro = "Erro desconhecido";
+          }
+          toast.error("Erro ao criar conta!", { description: messageErro });
+          setLoading(false)
         },
       },
     );
@@ -96,11 +98,11 @@ export function CreateLoginForm({
                 <Input id="password" type="password" name="password" required />
               </Field>
               <Field>
-                <Button type="submit">Entrar</Button>
+                <Button type="submit" disabled={loading}>
+                  {" "}
+                  {!loading ? "Entrar" : <Spinner />}
+                </Button>
               </Field>
-              <FieldDescription className="text-center">
-                Não tem conta? <a href="#">Cadastre-se</a>
-              </FieldDescription>
             </FieldGroup>
           </form>
         </CardContent>
